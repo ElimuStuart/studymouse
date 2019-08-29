@@ -22,6 +22,8 @@ Route::get('/student', function () {
 Route::get('/tutor', 'TutorsController@index');
 Route::get('/tutor/course/{id}', 'TutorsController@show');
 
+Route::resource('materials', 'MaterialsController');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

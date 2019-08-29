@@ -8,8 +8,16 @@
                 <div class="card-header">Dashboard</div>
 
                 <div class="card-body">
-                    {{$course->name}}
-                </div>
+                    {{$context['course']->name}}
+                    <br>
+                    <a href="/materials/create" class="btn btn-outline-primary" role="button" aria-disabled="true">Create Material</a>
+                   
+                   <br>
+                    @if ($context['materials']->count() > 0)
+                       @foreach($context['materials'] as $material)
+                       <a href='/tutor/material/{{$material->id}}' >{{$material->description}}</a>
+                       @endforeach
+                    @endif
             </div>
         </div>
     </div>

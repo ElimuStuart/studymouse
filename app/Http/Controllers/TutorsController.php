@@ -33,7 +33,12 @@ class TutorsController extends Controller
     {
         $course = Course::find($id);
         $materials = $course->materials;
+        session(['course_id' => $course->id]);
+        $context = [
+            'course'=> $course,
+            'materials' => $materials
+        ];
 
-        return view('tutors.course', compact('course', 'course'));
+        return view('tutors.course')->with('context', $context);
     }
 }
