@@ -22,6 +22,10 @@ Route::get('/tutor/course/{id}', 'TutorsController@show');
 
 Route::resource('materials', 'MaterialsController');
 
+Route::resource('plans', 'PlansController');
+
+Route::resource('subscriptions', 'SubscriptionsController');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

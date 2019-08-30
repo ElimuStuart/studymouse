@@ -31,6 +31,7 @@ class TutorsController extends Controller
      */
     public function show($id)
     {
+        // $tutor = User::find(Auth::id());
         $course = Course::find($id);
         $materials = $course->materials;
         session(['course_id' => $course->id]);
