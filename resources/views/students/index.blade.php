@@ -8,13 +8,11 @@
                 <div class="card-header">Student Dashboard</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
+                    @if ($courses->count() > 0)
+                        @foreach($courses as $course)
+                        <a href='/tutor/course/{{$course->id}}' >{{$course->name}}</a>
+                        @endforeach
                     @endif
-
-                    You are logged in!
                 </div>
             </div>
         </div>
