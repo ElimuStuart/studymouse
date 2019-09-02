@@ -9,9 +9,14 @@
 
                 <div class="card-body">
                     @if ($courses->count() > 0)
-                       @foreach($courses as $course)
-                       <a href='/tutor/course/{{$course->id}}' >{{$course->name}}</a>
-                       @endforeach
+                    <div class="list-group">
+                        @foreach($courses as $course)
+                        <a href="/tutor/course/{{$course->id}}" class="list-group-item list-group-item-action">{{$course->name}}</a>
+
+                        @endforeach
+                    </div>
+                    @else
+                    You are not assigned any courses yet.
                     @endif
                 </div>
             </div>

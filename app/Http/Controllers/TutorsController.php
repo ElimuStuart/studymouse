@@ -10,6 +10,11 @@ use Auth;
 
 class TutorsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('tutor');
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -31,13 +36,16 @@ class TutorsController extends Controller
      */
     public function show($id)
     {
+        $this->authorize('show', StudentController::class);
         // $tutor = User::find(Auth::id());
         $course = Course::find($id);
         $materials = $course->materials;
+        $tutors = $course->users;
         session(['course_id' => $course->id]);
         $context = [
             'course'=> $course,
-            'materials' => $materials
+            'materials' => $materials,
+            'tutors' => $tutors
         ];
 
         return view('tutors.course')->with('context', $context);

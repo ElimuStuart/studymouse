@@ -16,6 +16,8 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -75,9 +77,10 @@
         <main class="py-4">
             @include('inc.messages')
             @yield('content')
+            @yield('scripts')
         </main>
     </div>
 
-    @yield('scripts')
+    
 </body>
 </html>

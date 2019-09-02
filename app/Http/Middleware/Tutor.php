@@ -8,6 +8,7 @@ use Auth;
 
 class Tutor
 {
+    
     /**
      * Handle an incoming request.
      *

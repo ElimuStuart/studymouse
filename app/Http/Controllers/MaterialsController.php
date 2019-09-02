@@ -71,7 +71,7 @@ class MaterialsController extends Controller
         $course = Course::find($course_id);
         $course->materials()->save($material);
 
-        return redirect('/tutor/course/'.$course_id)->with('success', 'Post Created successfully');
+        return redirect('/tutor/course/'.$course_id)->with('success', 'Material Created successfully');
 
     }
 
@@ -117,6 +117,10 @@ class MaterialsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $material = Material::find($id);
+        $material->delete();
+
+        return back()->with('success', 'Material deleted successfully');
+
     }
 }

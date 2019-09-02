@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Plan;
+use Auth;
 
 class PlansController extends Controller
 {
@@ -48,7 +49,11 @@ class PlansController extends Controller
      */
     public function show(Plan $plan)
     {
-        return view('plans.show')->with('plan', $plan);
+        $user  = auth()->user();
+        return view('plans.show', [
+            'plan' => $plan,
+            'intent' => $user->createSetupIntent()
+        ]);
     }
 
     /**

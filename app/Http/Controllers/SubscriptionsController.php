@@ -46,13 +46,57 @@ class SubscriptionsController extends Controller
      */
     public function store(Request $request, Plan $plan)
     {
-        $plan = Plan::findOrFail($request->get('plan'));
+        // $plan = Plan::findOrFail($request->get('plan'));
         
-        $request->user()
-            ->newSubscription('main', $plan->stripe_plan)
-            ->create($request->stripeToken);
+        // $request->user()
+        //     ->newSubscription('main', $plan->stripe_plan)
+        //     ->create($request->stripeToken);
 
-        return redirect()->route('home')->with('success', 'Your plan subscribed successfully');
+        // return redirect()->route('home')->with('success', 'Your plan subscribed successfully');
+        $plan = Plan::findOrFail($request->get('plan'));
+
+        // $session = \Stripe\Checkout\Session::create([
+        //     'payment_method_types' => ['card'],
+        //     'line_items' => [[
+        //         'name' => $plan->name,
+        //         'description' => $plan->description,
+        //         'amount' => $plan->cost,
+        //         'currency' => 'usd',
+        //         'quantity' => 1,
+        //     ]],
+        //     'success_url' => 'https://studymouse.com/home',
+        //     'cancel_url' => 'https://example.com/cancel',
+        // ]);
+        
+  
+
+        // $user = auth()->user();
+
+        $paymentMethod = $request->setupIntent;
+
+        $user = User::find(1);
+        $user->createAsStripeCustomer([
+            'name' => $user->name
+        ]);
+
+        
+        $stripeplan = $request->stripe_plan;
+        $planid = $request->plan;
+
+        // $user->newSubscription($stripeplan, $planid)
+        //     ->trialDays(30)
+        //     ->create($user->name, $paymentMethod);
+
+        $user->subscriptions()->create([
+            'name' => $user->name,
+            'stripe_id' => $planid,
+            'stripe_plan' => $plan->name,
+            'stripe_status' => 'complete',
+            'quantity' => 1,
+        ]);
+
+
+        return redirect()->route('student')->with('success', 'Your plan subscribed successfully');
     }
 
     /**
