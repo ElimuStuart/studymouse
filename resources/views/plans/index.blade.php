@@ -9,6 +9,7 @@
                 <div class="card-body">
                     <ul class="list-group">
                         @foreach($plans as $plan)
+                        @if($current_subscription->stripe_plan != $plan->name)
                         <li class="list-group-item clearfix">
                             <div class="pull-left">
                                 <h5>{{ $plan->name }}</h5>
@@ -17,6 +18,7 @@
                                 <a href="{{ route('plans.show', $plan->slug) }}" class="btn btn-outline-dark pull-right">Choose</a>
                             </div>
                         </li>
+                        @endif
                         @endforeach
                     </ul>
                 </div>

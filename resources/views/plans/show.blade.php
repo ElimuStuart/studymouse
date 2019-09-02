@@ -17,7 +17,6 @@
                             </label>
                         </div>
                         <div class="card-body">
-                            <input id="card-holder-name" type="text">
                             <div id="card-element">
                             <!-- A Stripe Element will be inserted here. -->
                             </div>
@@ -50,7 +49,6 @@ const cardElement = elements.create('card');
 
 cardElement.mount('#card-element');
 
-const cardHolderName = document.getElementById('card-holder-name');
 const cardButton = document.getElementById('card-button');
 const clientSecret = cardButton.dataset.secret;
 
@@ -58,7 +56,7 @@ cardButton.addEventListener('click', async (e) => {
     const { setupIntent, error } = await stripe.handleCardSetup(
         clientSecret, cardElement, {
             payment_method_data: {
-                billing_details: { name: cardHolderName.value }
+                billing_details: { name: "" }
             }
         }
     );

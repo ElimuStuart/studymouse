@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Plan;
-use Auth;
-
-class PlansController extends Controller
+class CoursesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,13 +18,7 @@ class PlansController extends Controller
      */
     public function index()
     {
-        $plans = Plan::all();
-        $user = auth()->user();
-        $current_subscription = $user->subscriptions->first();
-        return view('plans.index', [
-            'current_subscription' => $current_subscription,
-            'plans' => $plans
-        ]);   
+        //
     }
 
     /**
@@ -32,7 +28,7 @@ class PlansController extends Controller
      */
     public function create()
     {
-        //
+        return view('courses.create');
     }
 
     /**
@@ -52,13 +48,9 @@ class PlansController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Plan $plan)
+    public function show($id)
     {
-        $user  = auth()->user();
-        return view('plans.show', [
-            'plan' => $plan,
-            'intent' => $user->createSetupIntent()
-        ]);
+        //
     }
 
     /**

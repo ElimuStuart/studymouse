@@ -27,6 +27,8 @@ Route::resource('plans', 'PlansController');
 
 Route::resource('subscriptions', 'SubscriptionsController');
 
+Route::resource('courses', 'CoursesController');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
