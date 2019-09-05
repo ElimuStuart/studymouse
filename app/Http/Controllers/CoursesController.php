@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Course;
+
 class CoursesController extends Controller
 {
     public function __construct()
@@ -39,7 +41,24 @@ class CoursesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+            'time' => 'required',
+            'start_date' => 'required|after:today',
+            'end_date' => 'required|after:today',
+        ]);
+
+        $course = new Course();
+        $course->name = $request->input('name');
+        $course->description = $request->input('description');
+        $course->time = $request->input('time');
+        $course->start_date = $request->input('start_date');
+        $course->end_date = $request->input('end_date');
+
+        $course->save();
+
+        return back()->with('success', 'Course created successfully');
     }
 
     /**

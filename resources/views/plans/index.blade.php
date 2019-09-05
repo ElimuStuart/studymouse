@@ -9,16 +9,19 @@
                 <div class="card-body">
                     <ul class="list-group">
                         @foreach($plans as $plan)
-                        @if($current_subscription->stripe_plan != $plan->name)
-                        <li class="list-group-item clearfix">
-                            <div class="pull-left">
-                                <h5>{{ $plan->name }}</h5>
-                                <h5>${{ number_format($plan->cost, 2) }} monthly</h5>
-                                <h5>{{ $plan->description }}</h5>
-                                <a href="{{ route('plans.show', $plan->slug) }}" class="btn btn-outline-dark pull-right">Choose</a>
-                            </div>
+                        @if($current_subscription->stripe_plan == $plan->name)
+                        <li class="list-group-item d-flex justify-content-between align-items-center active">
+                            Current : {{ $current_subscription->stripe_plan }}
+                            <span class="badge badge-light badge-pill p-2">${{ number_format($plan->cost, 2) }}</span>
+                        </li>
+                        @else
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="{{ route('plans.show', $plan->slug) }}" class="btn btn-link pull-right">{{ $plan->name }}</a>
+                            <span class="badge badge-primary badge-pill p-2">${{ number_format($plan->cost, 2) }}</span>
                         </li>
                         @endif
+                        
+                        
                         @endforeach
                     </ul>
                 </div>

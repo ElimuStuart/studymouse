@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::get('/student', 'StudentController@index')->name('student');
@@ -32,3 +32,6 @@ Route::resource('courses', 'CoursesController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/attach/course/{id}', 'HomeController@store')->name('store');
+
+Route::get('/admin/course/{id}', 'HomeController@show')->name('show');

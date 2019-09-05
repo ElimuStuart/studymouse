@@ -18,7 +18,12 @@ class PlansController extends Controller
     {
         $plans = Plan::all();
         $user = auth()->user();
-        $current_subscription = $user->subscriptions->first();
+        if ($user->subscriptions->count() > 0) {
+            $current_subscription = $user->subscriptions->first();
+        } else {
+            $current_subscription = [];
+        }
+        
         return view('plans.index', [
             'current_subscription' => $current_subscription,
             'plans' => $plans

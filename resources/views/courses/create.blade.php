@@ -11,7 +11,7 @@
                     <form method="POST" action="{{action('CoursesController@store')}}">
                         <input name="_token" type="hidden" value="{{ csrf_token() }}">
                         <div class="form-group">
-                            <label for="courseName">Make</label>
+                            <label for="courseName">Name</label>
                             <input type="text" class="form-control" id="courseName" aria-describedby="courseName" placeholder="Course Name" name="name">
                         </div>
                         <div class="form-group">

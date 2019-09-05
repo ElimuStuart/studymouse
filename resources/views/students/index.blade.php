@@ -9,14 +9,9 @@
 
                 <div class="card-body">
                     @if ($courses->count() > 0)
-                        
-                        
-                    
-
                     <div class="row">
                         <div class="col-4">
                             <div class="list-group" id="list-tab" role="tablist">
-                                <!-- <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Home</a> -->
                                 @foreach($courses as $course)
                                 <a class="list-group-item list-group-item-action @if ($loop->index == 0)active @endif " id="list-course-{{$course->id}}-list" data-toggle="list" href="#list-course-{{$course->id}}" role="tab" aria-controls="course-{{$course->id}}">{{$course->name}}</a>
                                 @endforeach
@@ -42,7 +37,8 @@
                         
                         </div>
                     </div>
-
+                    @else
+                    You do not have a subscription
                     @endif
                 </div>
             </div>

@@ -28,9 +28,7 @@ class StudentController extends Controller
         $user = User::find(Auth::id());
         if ($user->subscriptions[0]->stripe_plan == "Basic") {
             $courses = $courses->take(1);
-        } else {
-            # code...
-        }
+        }  
         
         return view('students.index')->with('courses', $courses);
     }

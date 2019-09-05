@@ -36,7 +36,6 @@ class TutorsController extends Controller
      */
     public function show($id)
     {
-        $this->authorize('show', StudentController::class);
         // $tutor = User::find(Auth::id());
         $course = Course::find($id);
         $materials = $course->materials;
