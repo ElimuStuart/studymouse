@@ -25,7 +25,7 @@ class TutorsController extends Controller
         $tutor = User::find(Auth::id());
         $courses = $tutor->courses;
 
-        return view('tutors.index', compact('courses', 'courses'));
+        return view('students.index', compact('courses', 'courses'));
     }
 
     /**
