@@ -9,11 +9,7 @@
 
                 <div class="card-body">
                     <p>{{$context['course']->description}}</p>
-
                     
-                    
-                   
-                   
             </div>
 
             
