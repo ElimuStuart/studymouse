@@ -45,6 +45,8 @@
                   
                 <span class="h5 text-black mb-4">{{$material->description}}</span>
                 @if (Auth::user()->role == "tutor")
+                <div class="d-flex">
+                <a class="mr-2 btn btn-outline-success" href="{{$material->material}}" download><i class="fas fa-file-download"></i></a>
                 <form method="POST" action="{{ action('MaterialsController@destroy', $material->id) }}">
                     <input name="_token" type="hidden" value="{{ csrf_token() }}">
                     <input type="hidden" name="_method" value="DELETE">
@@ -54,9 +56,10 @@
                 </form>
                 
                 
-                @elseif(Auth::user()->role == "student")
-                <a href="{{$material->material}}" download>Download</a>
                 @endif
+                
+                </div>
+                
                 </div>
                 @endforeach
             </div>
