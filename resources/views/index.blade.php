@@ -15,9 +15,11 @@
                   <p data-aos="fade-up" data-aos-delay="300"><a href="#" class="btn btn-primary py-3 px-5 btn-pill">Admission Now</a></p>
 
                 </div>
-
+                
                 <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="500">
-                  <form action="" method="post" class="form-box">
+
+                  <!-- @include('inc.register') -->
+                  <!-- <form action="" method="post" class="form-box">
                     <h3 class="h4 text-black mb-4">Sign Up</h3>
                     <div class="form-group">
                       <input type="text" class="form-control" placeholder="Email Addresss">
@@ -31,9 +33,10 @@
                     <div class="form-group">
                       <input type="submit" class="btn btn-primary btn-pill" value="Sign up">
                     </div>
-                  </form>
+                  </form> -->
 
                 </div>
+
               </div>
             </div>
             

@@ -15,6 +15,13 @@ Route::get('/', function () {
     return view('index');
 });
 
+
+
+// Route::get('/', 'Auth\RegisterController@showRegistrationForm')->name('register');
+// Route::post('/', 'Auth\RegisterController@register');
+
+// Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
+
 Route::get('/student', 'StudentController@index')->name('student');
 Route::get('/student/course/{id}', 'StudentController@show');
 
