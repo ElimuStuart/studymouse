@@ -29,8 +29,12 @@ class HomeController extends Controller
     public function index()
     {
         $courses = Course::all();
+        $tutors = User::where('role', 'tutor');
+        $students = User::where('role', 'student');
         return view('home', [
-            'courses' => $courses
+            'courses' => $courses,
+            'tutors' => $tutors,
+            'students' => $students
         ]);
     }
 
