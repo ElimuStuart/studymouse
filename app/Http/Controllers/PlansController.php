@@ -60,6 +60,9 @@ class PlansController extends Controller
     public function show(Plan $plan)
     {
         $user  = auth()->user();
+
+        // storing payment method
+
         return view('plans.show', [
             'plan' => $plan,
             'intent' => $user->createSetupIntent()

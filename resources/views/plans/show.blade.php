@@ -40,6 +40,7 @@
 @section('scripts')
 <script src="https://js.stripe.com/v3/"></script>
 <script>
+
 window.onload = function () {
 
 const stripe = Stripe('{{ env("STRIPE_KEY") }}');
@@ -56,20 +57,36 @@ cardButton.addEventListener('click', async (e) => {
     const { setupIntent, error } = await stripe.handleCardSetup(
         clientSecret, cardElement, {
             payment_method_data: {
-                billing_details: { name: "" }
+                billing_details: { name: "sara" }
             }
         }
     );
 
-    console.log(setupIntent);
-    console.log("hello");
+    console.log(setupIntent)
 
     if (error) {
         // Display "error.message" to the user...
+        var errorElement = document.getElementById('card-errors');
+        errorElement.textContent = error.message;
     } else {
         // The card has been verified successfully...
+        console.log(setupIntent)
+        stripeTokenHandler(setupIntent);
     }
 });
+
+const stripeTokenHandler = (token) => {
+    // Insert the token ID into the form so it gets submitted to the server
+    const form = document.getElementById('payment-form');
+    const hiddenInput = document.createElement('input');
+    hiddenInput.setAttribute('type', 'hidden');
+    hiddenInput.setAttribute('name', 'stripeToken');
+    hiddenInput.setAttribute('value', token.id);
+    form.appendChild(hiddenInput);
+
+    // Submit the form
+    form.submit();
+}
 
 }
 

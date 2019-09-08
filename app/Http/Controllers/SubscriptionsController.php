@@ -46,6 +46,32 @@ class SubscriptionsController extends Controller
      */
     public function store(Request $request, Plan $plan)
     {
+
+        // ===== workflow ======
+        // define a service product and pricing plan
+        // create a customer
+        // subscribe the customer to a plan
+
+        // preriquisites
+        // only customers with a stored payment method can be subscribed to a plan
+        // TODO: store payment method for customer
+
+        // get customer
+        $user = auth()->user();
+        // create a stripe customer 
+        $user->createAsStripeCustomer();
+
+        // get payment method idenifier && create or update payment method
+        $paymentMethod = $request->input('stripeToken');
+        
+        // attach payment method to user
+        $user->addPaymentMethod($paymentMethod);
+
+        // create subscription
+        $plan_id = Plan::findOrFail($request->get('plan'));
+        $plan_name = $plan->name;
+        $user->newSubscription($plan_name, $plan_id)->create($paymentMethod);
+
         // $plan = Plan::findOrFail($request->get('plan'));
         
         // $request->user()
@@ -53,7 +79,7 @@ class SubscriptionsController extends Controller
         //     ->create($request->stripeToken);
 
         // return redirect()->route('home')->with('success', 'Your plan subscribed successfully');
-        $plan = Plan::findOrFail($request->get('plan'));
+        // $plan = Plan::findOrFail($request->get('plan'));
 
         // $session = \Stripe\Checkout\Session::create([
         //     'payment_method_types' => ['card'],
@@ -72,28 +98,28 @@ class SubscriptionsController extends Controller
 
         // $user = auth()->user();
 
-        $paymentMethod = $request->setupIntent;
+        // $paymentMethod = $request->setupIntent;
 
-        $user = User::find(1);
-        $user->createAsStripeCustomer([
-            'name' => $user->name
-        ]);
+        // $user = User::find(1);
+        // $user->createAsStripeCustomer([
+        //     'name' => $user->name
+        // ]);
 
         
-        $stripeplan = $request->stripe_plan;
-        $planid = $request->plan;
+        // $stripeplan = $request->stripe_plan;
+        // $planid = $request->plan;
 
         // $user->newSubscription($stripeplan, $planid)
         //     ->trialDays(30)
         //     ->create($user->name, $paymentMethod);
 
-        $user->subscriptions()->create([
-            'name' => $user->name,
-            'stripe_id' => $planid,
-            'stripe_plan' => $plan->name,
-            'stripe_status' => 'complete',
-            'quantity' => 1,
-        ]);
+        // $user->subscriptions()->create([
+        //     'name' => $user->name,
+        //     'stripe_id' => $planid,
+        //     'stripe_plan' => $plan->name,
+        //     'stripe_status' => 'complete',
+        //     'quantity' => 1,
+        // ]);
 
 
         return redirect()->route('student')->with('success', 'Your plan subscribed successfully');
