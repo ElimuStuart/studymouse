@@ -62,7 +62,12 @@ class SubscriptionsController extends Controller
         // create a stripe customer 
         $user->createAsStripeCustomer();
 
-        // get payment method idenifier && create or update payment method //"pm_1FGXgwCNgwE5rJN7SmNzhUcz"
+        // get payment method idenifier && create payment method if user has no payment method
+        // TODO: check if user has payment method 
+        // if ($user->hasPaymentMethod()) {}
+        
+        // TODO: update payment method of user 
+
         $paymentMethod = $request->get('stripeToken');
 
         // $user->deletePaymentMethods();
