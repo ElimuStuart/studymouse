@@ -18,6 +18,7 @@ class PlansController extends Controller
     {
         $plans = Plan::all();
         $user = auth()->user();
+        
         if ($user->subscriptions->count() > 0) {
             $current_subscription = $user->subscriptions->first();
         } else {
