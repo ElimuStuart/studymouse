@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Plan;
 use App\User;
 use Auth;
+use Log;
 
 
 class SubscriptionsController extends Controller
@@ -61,16 +62,19 @@ class SubscriptionsController extends Controller
         // create a stripe customer 
         $user->createAsStripeCustomer();
 
-        // get payment method idenifier && create or update payment method
-        $paymentMethod = $request->input('stripeToken');
+        // get payment method idenifier && create or update payment method //"pm_1FGXgwCNgwE5rJN7SmNzhUcz"
+        $paymentMethod = $request->get('stripeToken');
+
+        // $user->deletePaymentMethods();
         
         // attach payment method to user
         $user->addPaymentMethod($paymentMethod);
 
         // create subscription
-        $plan_id = Plan::findOrFail($request->get('plan'));
-        $plan_name = $plan->name;
-        $user->newSubscription($plan_name, $plan_id)->create($paymentMethod);
+        $plan = Plan::findOrFail($request->get('plan'));
+        // $user->newSubscription({name_of_subscription_plan}, {subscription_plan_id})->create($paymentMethod);
+        $user->newSubscription($plan->name, $plan->id)
+            ->create($paymentMethod);
 
         // $plan = Plan::findOrFail($request->get('plan'));
         
@@ -80,21 +84,6 @@ class SubscriptionsController extends Controller
 
         // return redirect()->route('home')->with('success', 'Your plan subscribed successfully');
         // $plan = Plan::findOrFail($request->get('plan'));
-
-        // $session = \Stripe\Checkout\Session::create([
-        //     'payment_method_types' => ['card'],
-        //     'line_items' => [[
-        //         'name' => $plan->name,
-        //         'description' => $plan->description,
-        //         'amount' => $plan->cost,
-        //         'currency' => 'usd',
-        //         'quantity' => 1,
-        //     ]],
-        //     'success_url' => 'https://studymouse.com/home',
-        //     'cancel_url' => 'https://example.com/cancel',
-        // ]);
-        
-  
 
         // $user = auth()->user();
 

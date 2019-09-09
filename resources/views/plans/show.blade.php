@@ -1,6 +1,53 @@
 @extends('layouts.app')
 
 @section('content')
+
+<div class="site-section courses-title bg-dark" id="courses-section">
+    <div class="container mt-5 pt-5">
+    <div class="row mb-0 justify-content-center">
+        <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="">
+        <h2 class="section-title">{{ $plan->name }}</h2>
+        </div>
+    </div>
+    </div>
+</div>
+
+<div class="site-section">
+    <div class="container">
+    <div class="row">
+        <div class="col-lg-8 mb-5">
+
+        <div class="mb-5">
+            <h3 class="text-black">Plan Description</h3>
+            <p class="mb-4">
+            <strong class="text-black mr-3">Schedule: </strong>
+            </p>
+            <p>{{$plan->description}}</p>
+            <div class="row mb-4 mt-4">
+            <div class="col-lg-12">
+            
+            <div class="mb-5 text-center border rounded course-instructor">
+                <h3 class="mb-5 text-black text-uppercase h6 border-bottom pb-3">Course Material</h3>
+                <div class="mb-2 d-flex justify-content-between align-items-center">
+                  
+                </div>
+            </div>
+            
+            </div>
+            
+            </div>
+            
+        </div>
+        
+        </div>
+
+        
+        
+    </div>
+    </div>
+</div>
+
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -54,6 +101,7 @@ const cardButton = document.getElementById('card-button');
 const clientSecret = cardButton.dataset.secret;
 
 cardButton.addEventListener('click', async (e) => {
+    e.preventDefault();
     const { setupIntent, error } = await stripe.handleCardSetup(
         clientSecret, cardElement, {
             payment_method_data: {
@@ -81,7 +129,7 @@ const stripeTokenHandler = (token) => {
     const hiddenInput = document.createElement('input');
     hiddenInput.setAttribute('type', 'hidden');
     hiddenInput.setAttribute('name', 'stripeToken');
-    hiddenInput.setAttribute('value', token.id);
+    hiddenInput.setAttribute('value', token.payment_method);
     form.appendChild(hiddenInput);
 
     // Submit the form

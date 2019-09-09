@@ -26,10 +26,10 @@ class StudentController extends Controller
     {
         $courses = Course::all();
         $user = User::find(Auth::id());
-        if (count($user->subscriptions) != 0 && $user->subscriptions[0]->stripe_plan == "Basic") {
+        if ($user->subscribed('Basic')) {
             $courses = $courses->take(1);
-        } else if (count($user->subscriptions) != 0 && $user->subscriptions[0]->stripe_plan == "Intermediate") {
-            $courses = $courses->take(4);
+        } else if ($user->subscribed('Intermediate')) {
+            $courses = $courses->take(3);
         } else {
             $courses = $courses->take(0);
         }
