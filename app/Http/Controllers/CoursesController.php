@@ -80,7 +80,7 @@ class CoursesController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('courses.edit');
     }
 
     /**
@@ -103,6 +103,9 @@ class CoursesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $course = Course::find($id);
+        $course->delete();
+
+        return view('home')->with('success', 'course deleted successfully');
     }
 }

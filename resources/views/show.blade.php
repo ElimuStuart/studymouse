@@ -41,8 +41,23 @@
         
         <div class="pt-5">
             <h3 class="mb-5">Actions</h3>
-            <a href="#" class="btn btn-primary">Edit</a>
-            <a class="btn btn-primary" data-toggle="collapse" href="#collaapseExample" role="button" aria-expanded="false" aria-controls="collaapseExample">
+            <a href="#" class="btn btn-primary py-3 px-5 btn-pill">Edit</a>
+            <a class="btn btn-primary py-3 px-5 btn-pill" data-toggle="collapse" href="#collaapseDelete" role="button" aria-expanded="false" aria-controls="collaapseDelete">
+              Delete
+            </a>
+            <div class="collapse pt-3 mb-3" id="collaapseDelete">
+            <div class="card card-body">
+              <form method="POST" action="{{action('CoursesController@destroy', $course->id)}}">
+                <p>Lorem ipsum dolor sit amet sectetur adipisicing elit. Ipsa porro expedita libero pariatur vero eos.</p>
+                  <input name="_token" type="hidden" value="{{ csrf_token() }}">
+                  <input type="hidden" name="_method" value="DELETE">
+                  <button type="submit" class="btn btn-outline-danger">
+                    Delete
+                  </button>
+              </form>
+            </div>
+            </div>
+            <a class="btn btn-primary py-3 px-5 btn-pill" data-toggle="collapse" href="#collaapseExample" role="button" aria-expanded="false" aria-controls="collaapseExample">
               Add Tutor
             </a>
             <div class="collapse pt-3" id="collaapseExample">
