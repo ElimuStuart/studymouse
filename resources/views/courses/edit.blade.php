@@ -1,14 +1,36 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Edit Course: {{$course->name}}</div>
+<div class="intro-section single-cover" id="home-section">
+      
+    <div class="slide-1 " style="background-image: url({{ asset('images/img_2.jpg')}});" data-stellar-background-ratio="0.5">
+    <div class="container">
+        <div class="row align-items-center">
+        <div class="col-12">
+            <div class="row justify-content-center align-items-center text-center">
+            <div class="col-lg-6">
+                <h1 data-aos="fade-up" data-aos-delay="0">{{$course->name}}</h1>
+                <p data-aos="fade-up"  class="text-white" data-aos-delay="100">${{ $course->time }} / Month</p>
+            </div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{action('CoursesController@update', $course->id)}}">
+            
+            </div>
+        </div>
+        
+        </div>
+    </div>
+    </div>
+</div>
+
+<div class="site-section">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 mb-5">
+            <div class="mb-5">
+                <h3 class="text-black">Edit Course: {{$course->name}}</h3>
+
+                <div class="mb-5 border rounded">
+                    <form method="POST" class="form-box" action="{{action('CoursesController@update', $course->id)}}">
                         <input name="_token" type="hidden" value="{{ csrf_token() }}">
                         <input type="hidden" name="_method" value="PATCH">
                         <div class="form-group">
@@ -31,11 +53,13 @@
                             <label for="end_date">End Date</label>
                             <input type="date" value="{{$course->end_date}}" class="form-control" id="end_date" placeholder="End Date" name="end_date">
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary  py-3 px-5 btn-pill">Submit</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+</div>
+
 @endsection

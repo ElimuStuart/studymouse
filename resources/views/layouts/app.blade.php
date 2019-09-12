@@ -68,6 +68,10 @@
                 
                 <li><a href="/student" class="nav-link">Dashboard</a></li>
                 @endif
+                @if (Auth::user()->role == "admin")
+                
+                <li><a href="/courses/create" class="nav-link">Create</a></li>
+                @endif
                 @endguest
               </ul>
             </nav>
