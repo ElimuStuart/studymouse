@@ -78,7 +78,7 @@ class SubscriptionsController extends Controller
         // create subscription
         $plan = Plan::findOrFail($request->get('plan'));
         // $user->newSubscription({name_of_subscription_plan}, {subscription_plan_id})->create($paymentMethod);
-        $user->newSubscription($plan->name, $plan->id)
+        $user->newSubscription($plan->id, $plan->name)
             ->create($paymentMethod);
 
         // $plan = Plan::findOrFail($request->get('plan'));

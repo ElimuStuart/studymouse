@@ -60,11 +60,12 @@
                 <li><a href="#courses-section" class="nav-link">Courses</a></li>
                 <li><a href="#programs-section" class="nav-link">Programs</a></li>
                 <li><a href="#teachers-section" class="nav-link">Teachers</a></li>
+                <li><a href="/plans" class="nav-link">Plans</a></li>
                 @guest
                 
                 @else
                 @if (Auth::user()->role == "student")
-                <li><a href="/plans" class="nav-link">Plans</a></li>
+                
                 <li><a href="/student" class="nav-link">Dashboard</a></li>
                 @endif
                 @endguest

@@ -11,8 +11,17 @@
 |
 */
 
+use App\Course;
+use App\User;
+
+
 Route::get('/', function () {
-    return view('index');
+    $courses = Course::all();
+    $tutors = User::where('role', 'tutor')->get()->take(3);
+    return view('index', [
+        'courses' => $courses,
+        'tutors' => $tutors,
+    ]);
 });
 
 

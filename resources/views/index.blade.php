@@ -12,8 +12,11 @@
                 <div class="col-lg-6 mb-4">
                   <h1  data-aos="fade-up" data-aos-delay="100">Learn From The Expert</h1>
                   <p class="mb-4"  data-aos="fade-up" data-aos-delay="200">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime ipsa nulla sed quis rerum amet natus quas necessitatibus.</p>
-                  <p data-aos="fade-up" data-aos-delay="300"><a href="#" class="btn btn-primary py-3 px-5 btn-pill">Admission Now</a></p>
+                  @guest
+                  <p data-aos="fade-up" data-aos-delay="300"><a href="{{ route('register') }}" class="btn btn-primary py-3 px-5 btn-pill">Admission Now</a></p>
+                  @else
 
+                  @endguest
                 </div>
                 
                 <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="500">
@@ -60,7 +63,7 @@
         <div class="row">
 
           <div class="owl-carousel col-12 nonloop-block-14">
-
+            @foreach($courses as $course)
             <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
                 <a href="course-single.html"><img src="images/img_1.jpg" alt="Image" class="img-fluid"></a>
@@ -68,7 +71,7 @@
               <div class="course-inner-text py-4 px-4">
                 <span class="course-price">$20</span>
                 <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
-                <h3><a href="#">Study Law of Physics</a></h3>
+                <h3><a href="#">{{$course->name}}</a></h3>
                 <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
               </div>
               <div class="d-flex border-top stats">
@@ -76,7 +79,9 @@
                 <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
               </div>
             </div>
+            @endforeach
 
+            <!--
             <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
                 <a href="course-single.html"><img src="images/img_2.jpg" alt="Image" class="img-fluid"></a>
@@ -159,8 +164,10 @@
               </div>
             </div>
 
-          </div>
+            -->
 
+          </div>
+          
          
 
         </div>
@@ -259,18 +266,19 @@
         </div>
 
         <div class="row">
-
+          @foreach($tutors as $tutor)
           <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
             <div class="teacher text-center">
               <img src="images/person_1.jpg" alt="Image" class="img-fluid w-50 rounded-circle mx-auto mb-4">
               <div class="py-2">
-                <h3 class="text-black">Benjamin Stone</h3>
+                <h3 class="text-black">{{$tutor->name}}</h3>
                 <p class="position">Physics Teacher</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro eius suscipit delectus enim iusto tempora, adipisci at provident.</p>
               </div>
             </div>
           </div>
-
+          @endforeach
+          <!--
           <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
             <div class="teacher text-center">
               <img src="images/person_2.jpg" alt="Image" class="img-fluid w-50 rounded-circle mx-auto mb-4">
@@ -292,6 +300,8 @@
               </div>
             </div>
           </div>
+
+          -->
         </div>
       </div>
     </div>
