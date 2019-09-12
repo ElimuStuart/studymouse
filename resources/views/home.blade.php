@@ -95,7 +95,7 @@
               <div class="course-inner-text py-4 px-4">
                 <span class="course-price">$20</span>
                 <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
-                <h3><a href="/admin/course/{{$course->id}}">{{$course->name}}</a></h3>
+                <h3><a href="/courses/{{$course->id}}">{{$course->name}}</a></h3>
                 <p>{{ Str::limit($course->description, 30, '...') }} </p>
               </div>
               <!-- <div class="d-flex border-top stats">

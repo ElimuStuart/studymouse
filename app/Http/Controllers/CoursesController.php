@@ -69,7 +69,17 @@ class CoursesController extends Controller
      */
     public function show($id)
     {
-        //
+        $course = Course::find($id);
+        $materials = $course->materials;
+        $tutors = $course->users;
+        session(['course_id' => $course->id]);
+        $context = [
+            'course'=> $course,
+            'materials' => $materials,
+            'tutors' => $tutors
+        ];
+
+        return view('show', $context);
     }
 
     /**
@@ -80,7 +90,8 @@ class CoursesController extends Controller
      */
     public function edit($id)
     {
-        return view('courses.edit');
+        $course = Course::find($id);
+        return view('courses.edit', ['course'=>$course]);
     }
 
     /**
@@ -92,7 +103,24 @@ class CoursesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+            'time' => 'required',
+            'start_date' => 'required|after:today',
+            'end_date' => 'required|after:today',
+        ]);
+
+        $course = Course::find($id);
+        $course->name = $request->input('name');
+        $course->description = $request->input('description');
+        $course->time = $request->input('time');
+        $course->start_date = $request->input('start_date');
+        $course->end_date = $request->input('end_date');
+
+        $course->save();
+
+        return back()->with('success', 'Course updated successfully');
     }
 
     /**

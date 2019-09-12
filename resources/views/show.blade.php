@@ -41,7 +41,7 @@
         
         <div class="pt-5">
             <h3 class="mb-5">Actions</h3>
-            <a href="#" class="btn btn-primary py-3 px-5 btn-pill">Edit</a>
+            <a href="/courses/{{$course->id}}/edit" class="btn btn-primary py-3 px-5 btn-pill">Edit</a>
             <a class="btn btn-primary py-3 px-5 btn-pill" data-toggle="collapse" href="#collaapseDelete" role="button" aria-expanded="false" aria-controls="collaapseDelete">
               Delete
             </a>

@@ -50,4 +50,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/attach/course/{id}', 'HomeController@store')->name('store');
 
-Route::get('/admin/course/{id}', 'HomeController@show')->name('show');
+Route::get('/courses/{id}', 'HomeController@show')->name('show');
