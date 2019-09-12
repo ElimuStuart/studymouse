@@ -20,29 +20,11 @@
                 
                 <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="500">
 
-                  <!-- @include('inc.register') -->
-                  <!-- <form action="" method="post" class="form-box">
-                    <h3 class="h4 text-black mb-4">Sign Up</h3>
-                    <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Email Addresss">
-                    </div>
-                    <div class="form-group">
-                      <input type="password" class="form-control" placeholder="Password">
-                    </div>
-                    <div class="form-group mb-4">
-                      <input type="password" class="form-control" placeholder="Re-type Password">
-                    </div>
-                    <div class="form-group">
-                      <input type="submit" class="btn btn-primary btn-pill" value="Sign up">
-                    </div>
-                  </form> -->
-
                   <form method="POST" action="{{ route('login') }}" class="form-box">
                     <h3 class="h4 text-black mb-4">Log In</h3>
                     @csrf
 
                     <div class="form-group">
-                        <!-- <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label> -->
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="{{ __('E-Mail Address') }}">
 
                             @error('email')
@@ -54,7 +36,6 @@
                     </div>
 
                     <div class="form-group">
-                        <!-- <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label> -->
 
                         <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="{{ __('Password') }}">
 
@@ -77,7 +58,7 @@
                     </div>
 
                     <div class="form-group mb-0">
-                        <button type="submit" class="btn btn-primary btn-block">
+                        <button type="submit" class="btn btn-primary py-3 px-5 btn-pill">
                             {{ __('Login') }}
                         </button>
 
@@ -86,9 +67,7 @@
                                 {{ __('Forgot Your Password?') }}
                             </a>
                         @endif
-                        <div class="col-md-8 offset-md-4">
-                            
-                        </div>
+                        
                     </div>
                 </form>
 
